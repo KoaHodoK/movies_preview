@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:movies_preview_app/widgets/text.dart';
+import 'package:movies_preview_app/widgets/top_rated.dart';
+import 'package:movies_preview_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 import 'widgets/trending_movies.dart';
@@ -57,8 +59,7 @@ setState((){
   topratedmovies=topratedresult['results'];
   tv=tvresult['results'];
 });
-print(trendingMovies);
-print(topratedmovies);
+
 print(tv);
 
 
@@ -73,10 +74,15 @@ print(tv);
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:AppBar(
-        title: modified_text(text: 'Movie Preview',color: Colors.white,size:24)
+        title: modified_text(text: 'Movie Preview',color: Colors.red,size:24)
       ),
       body:ListView(
-        children:[TrendingMovies(trending:trendingMovies)]
+        children:[
+          TV(tv: tv),
+          TopRatedMovies(toprated: topratedmovies),
+          TrendingMovies(trending:trendingMovies),
+SizedBox(height:5),
+        ]
 
       ),
 
